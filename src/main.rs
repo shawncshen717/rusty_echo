@@ -4,11 +4,11 @@ use tokio::io::{AsyncReadExt, AsyncWriteExt};
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
     let listener = TcpListener::bind("127.0.0.1:7878").await?;
-    println!("🚀 Server running on 127.0.0.1:7878");
+    println!("Server running on 127.0.0.1:7878");
 
     loop {
         let (mut socket, addr) = listener.accept().await?;
-        println!("📡 New connection from: {}", addr);
+        println!("New connection from: {}", addr);
 
         // Spawn a new task for each client
         tokio::spawn(async move {
@@ -22,7 +22,7 @@ async fn main() -> std::io::Result<()> {
                     }
                     Ok(n) => {
                         let msg = String::from_utf8_lossy(&buffer[..n]);
-                        println!("📨 Received from {}: {}", addr, msg);
+                        println!("Received from {}: {}", addr, msg);
 
                         // Echo it back
                         if let Err(e) = socket.write_all(&buffer[..n]).await {
