@@ -8,7 +8,11 @@ async fn main() -> std::io::Result<()> {
 
     loop {
         let (mut socket, addr) = listener.accept().await?;
+<<<<<<< HEAD
         println!("New connection from: {}", addr);
+=======
+        println!("📡 New connection from: {}", addr);
+>>>>>>> 21d1086 (made small changes)
 
         // Spawn a new task for each client
         tokio::spawn(async move {
@@ -22,7 +26,11 @@ async fn main() -> std::io::Result<()> {
                     }
                     Ok(n) => {
                         let msg = String::from_utf8_lossy(&buffer[..n]);
+<<<<<<< HEAD
                         println!("Received from {}: {}", addr, msg);
+=======
+                        println!("📨 Received from {}: {}", addr, msg);
+>>>>>>> 21d1086 (made small changes)
 
                         // Echo it back
                         if let Err(e) = socket.write_all(&buffer[..n]).await {
